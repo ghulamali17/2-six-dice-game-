@@ -7,6 +7,7 @@ let text = document.getElementById("text");
 let dice1 = document.getElementById("dice1");
 let dice2 = document.getElementById("dice2");
 let result = document.getElementById("result");
+let tossBtn = document.getElementById("toss");
 let input;
 
 // Function to start the game and take toss input from the user
@@ -22,8 +23,9 @@ function startGame() {
     alert("Invalid input, please enter 'Head' or 'Tail'");
     return;
   }
+
   // Enabling the toss button and disabling the start button
-  document.getElementById("toss").removeAttribute("disabled");
+  tossBtn.removeAttribute("disabled");
   document.getElementById("text").innerHTML =
     "Game started! Click Toss to decide who plays first.";
   document.getElementById("start").setAttribute("disabled", "true");
@@ -38,11 +40,13 @@ function toss() {
     text.innerHTML = `It's ${player1}! Player 1 Wins the Toss`;
     btn2.setAttribute("disabled", "true");
     btn1.removeAttribute("disabled");
+    tossBtn.setAttribute("disabled", "true");
   } else {
     // If random number is 1, Player 2 wins
     text.innerHTML = `It's ${player2}! Player 2 Wins the Toss`;
     btn1.setAttribute("disabled", "true");
     btn2.removeAttribute("disabled");
+    tossBtn.setAttribute("disabled", "true");
   }
 }
 
@@ -51,21 +55,23 @@ function game() {
   let random1 = Math.floor(Math.random() * 6) + 1;
   let random2 = Math.floor(Math.random() * 6) + 1;
 
-  // Set dice background images based on their values
+  // Seting dice Img
   dice1.style.backgroundImage = `url('./images/die-face-${random1}.svg')`;
   dice2.style.backgroundImage = `url('./images/die-face-${random2}.svg')`;
 
-  //   checking the winner
+  // Checking if both dice rolled 6
   if (random1 === 6 && random2 === 6) {
+    // Declaring the winner based on whose turn it is
+    if (!btn1.hasAttribute("disabled")) {
+      result.innerHTML = "Player 1 Wins the Game!";
+    } else {
+      result.innerHTML = "Player 2 Wins the Game!";
+    }
+    // Disable both buttons after the game ends
     btn1.setAttribute("disabled", "true");
     btn2.setAttribute("disabled", "true");
-    if (btn1.hasAttribute("disabled")) {
-      result.innerHTML = "Player 2 Win the Game";
-    } else {
-      result.innerHTML = "Player 1 Win the Game";
-    }
   } else {
-    // If no player wins
+    // If no player wins, toggle turns
     if (btn1.hasAttribute("disabled")) {
       btn1.removeAttribute("disabled");
       btn2.setAttribute("disabled", "true");
@@ -75,6 +81,7 @@ function game() {
     }
   }
 }
+
 function reloadPage() {
   location.reload();
 }
