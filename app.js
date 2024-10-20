@@ -12,7 +12,7 @@ let input;
 
 // Function to start the game and take toss input from the user
 function startGame() {
-  input = prompt("Head or Tail", "Head").toLowerCase();
+  input = prompt("Player 1: Head or Tail").toLowerCase();
   if (input === "head") {
     player1 = "head";
     player2 = "tail";
@@ -33,17 +33,16 @@ function startGame() {
 
 // Function for toss
 function toss() {
-  // Generating a random number 0 or 1 for toss
   let randomNm = Math.floor(Math.random() * 2);
   // If random number is 0, Player 2 wins
   if (randomNm === 0) {
-    text.innerHTML = `It's ${player1}! Player 1 Wins the Toss`;
+    text.innerHTML = `It's ${player1.toUpperCase()}! Player 1 Wins the Toss`;
     btn2.setAttribute("disabled", "true");
     btn1.removeAttribute("disabled");
     tossBtn.setAttribute("disabled", "true");
   } else {
     // If random number is 1, Player 2 wins
-    text.innerHTML = `It's ${player2}! Player 2 Wins the Toss`;
+    text.innerHTML = `It's ${player2.toUpperCase()}! Player 2 Wins the Toss`;
     btn1.setAttribute("disabled", "true");
     btn2.removeAttribute("disabled");
     tossBtn.setAttribute("disabled", "true");
@@ -61,7 +60,6 @@ function game() {
 
   // Checking if both dice rolled 6
   if (random1 === 6 && random2 === 6) {
-    // Declaring the winner based on whose turn it is
     if (!btn1.hasAttribute("disabled")) {
       result.innerHTML = "Player 1 Wins the Game!";
     } else {
@@ -71,7 +69,7 @@ function game() {
     btn1.setAttribute("disabled", "true");
     btn2.setAttribute("disabled", "true");
   } else {
-    // If no player wins, toggle turns
+    // If no player wins, toggling turns
     if (btn1.hasAttribute("disabled")) {
       btn1.removeAttribute("disabled");
       btn2.setAttribute("disabled", "true");
