@@ -28,5 +28,5 @@ The 2 Six Dice Game is a fun web-based game where two players roll dice to compe
 - JavaScript
 
 ## Author
-- [Ghulam Ali] - [Your GitHub Profile](https://github.com/ghulamali17)
+- [Ghulam Ali] - [ghulamali17](https://github.com/ghulamali17)
 
